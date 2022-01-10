@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// https://github.com/preactjs/preact/blob/master/src/jsx.d.ts
 // Users who only use Preact for SSR might not specify "dom" in their lib in tsconfig.json
 /// <reference lib="dom" />
 
@@ -931,18 +932,6 @@ export namespace JSX {
 }
 
 const emptyTags = 'area base br col command embed hr img input keygen link meta param source track wbr'.split(/\s+/);
-const eventHandlerAttrs =
-  `onabort onanimationcancel onanimationend onanimationiteration onanimationstart onauxclick onblur oncanplay
-oncanplaythrough onchange onclick onclose oncontextmenu oncuechange ondblclick ondrag ondragend ondragenter ondragleave
-ondragover ondragstart ondrop ondurationchange onemptied onended onerror onfocus onformdata
-ongotpointercapture oninput oninvalid onkeydown onkeypress onkeyup onload onloadeddata onloadedmetadata onloadstart
-onlostpointercapture onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onpause onplay
-onplaying onpointercancel onpointerdown onpointerenter onpointerleave onpointermove onpointerout onpointerover
-onpointerup onprogress onratechange onreset onresize onscroll onseeked onseeking onselect onselectionchange
-onselectstart onstalled onsubmit onsuspend ontimeupdate ontoggle ontouchcancel ontouchend ontouchmove ontouchstart
-ontransitioncancel ontransitionend ontransitionrun ontransitionstart onvolumechange onwaiting onanimationend
-onwebkitanimationend onanimationiteration onwebkitanimationiteration onanimationstart onwebkitanimationstart
-ontransitionend onwebkittransitionend onwheel`.split(/\s+/);
 
 // escape an attribute
 const map: Record<string, string> = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos' };
@@ -978,7 +967,7 @@ export function h(
         else if (typeof value === 'object' && value) Object.assign(value, { current: element });
       } else if (i.toLowerCase() === 'style' && value && typeof value === 'object') {
         Object.assign(element.style, value);
-      } else if (eventHandlerAttrs.indexOf(i.toLowerCase()) !== -1) {
+      } else if (i.startsWith('on')) {
         element.addEventListener(i.substring(2).toLowerCase(), value);
       } else if (value !== false && value !== null && i !== setInnerHTMLAttr) {
         element.setAttribute(DOMAttributeNames[i] ? DOMAttributeNames[i] : esc(i), value);
