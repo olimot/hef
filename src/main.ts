@@ -954,7 +954,7 @@ export function h(
   attrs: Record<string, any> = {},
   ...childrenSpread: any
 ): Node {
-  let children = (attrs.children || childrenSpread) as any;
+  let children = (attrs?.children || childrenSpread) as any;
   if (!(children instanceof Array)) children = [children];
   if (typeof tagName === 'function') return tagName({ ...attrs, children });
 
@@ -1000,7 +1000,7 @@ export function h(
 export function Fragment(attrs: Record<string, any> & { ref?: Ref<DocumentFragment>; children?: any[] } = {}) {
   const fragment = document.createDocumentFragment();
 
-  let { children } = attrs;
+  let children = attrs?.children ?? [];
   if (!(children instanceof Array)) children = [children];
   while (children && children.length) {
     const child = children.shift();
