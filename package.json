@@ -1,11 +1,20 @@
 {
-  "name": "html-element-factory",
+  "name": "@olimot/hef",
   "version": "1.0.0",
-  "main": "lib/main.js",
+  "main": "./lib/main.js",
+  "types": "./lib/main.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
   },
+  "files": [
+    "lib/main.js",
+    "lib/main.js.map",
+    "lib/main.d.ts",
+    "lib/main.d.ts.map",
+    "jsx-runtime.js",
+    "jsx-runtime.d.ts"
+  ],
   "devDependencies": {
     "typescript": "^4.5.4"
   }
