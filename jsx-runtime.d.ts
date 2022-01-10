@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // https://github.com/preactjs/preact/blob/master/jsx-runtime/src/index.d.ts
-import { JSX, NodeChild, NodeChildren, FunctionComponent } from './lib/main';
-
-export declare global {
-  export { JSX };
-}
+import { NodeChild, NodeChildren, FunctionComponent } from './lib/main';
 
 export function Fragment(attrs?: Record<string, any> & { children?: NodeChild }): DocumentFragment;
 
